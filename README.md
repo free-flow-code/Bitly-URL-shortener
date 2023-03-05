@@ -20,6 +20,7 @@ pip install -r requirements.txt
 python main.py https://google.com https://bit.ly/3KWymC1
 ```
 Пример работы:
+
 ![](https://i.ibb.co/bPWX4qb/short-link.jpg)
 ### Цель проекта
 
