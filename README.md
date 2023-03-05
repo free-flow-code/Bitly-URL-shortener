@@ -20,7 +20,7 @@ pip install -r requirements.txt
 python main.py https://google.com https://bit.ly/3KWymC1
 ```
 Пример работы:
-![](//https://ibb.co/FKxzQNH)
+![](https://i.ibb.co/bPWX4qb/short-link.jpg)
 ### Цель проекта
 
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/).
