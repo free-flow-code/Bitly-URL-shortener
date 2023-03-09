@@ -8,12 +8,14 @@ from dotenv import load_dotenv
 
 
 def create_parser():
+    """Parse command-line arguments and return list of user-entered urls."""
     parser = argparse.ArgumentParser(description='Сокращение ссылок с помощью API Bitly')
     parser.add_argument('user_urls', help='Вставьте одну или несколько ссылок', nargs='+', default=[''])
     return parser
 
 
 def shorten_link(url, bitly_token):
+    """Makes a post-request to the site and return shorten link - bitlink."""
     site = 'https://api-ssl.bitly.com/v4/bitlinks'
     header = {'Authorization': f'Bearer {bitly_token}'}
     long_url = {'long_url': url}
@@ -24,12 +26,14 @@ def shorten_link(url, bitly_token):
 
 
 def create_biturl(url):
+    """Creates a link like 'url.com/path' without 'http://' scheme"""
     parsed_url = urlparse(url)
     bit_url = ''.join([parsed_url.netloc, parsed_url.path])
     return bit_url
 
 
 def count_clicks(url, bitly_token):
+    """Makes a get-request to the site and returns the number of clicks on the short link."""
     bit_url = create_biturl(url)
     site =f'https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/clicks/summary'
     header = {'Authorization': f'Bearer {bitly_token}'}
@@ -41,6 +45,10 @@ def count_clicks(url, bitly_token):
 
 
 def is_bitlink(url, bitly_token):
+    """
+    Checks if the link is short by makes a get-request to the site.
+    Returns true if is it.
+    """
     bit_url = create_biturl(url)
     site = f'https://api-ssl.bitly.com/v4/bitlinks/{bit_url}'
     header = {'Authorization': f'Bearer {bitly_token}'}
@@ -51,6 +59,7 @@ def is_bitlink(url, bitly_token):
 def main():
     bitly_token = os.environ['BITLY_TOKEN']
     parser = create_parser()
+    # Gets the links entered by the user as a list
     urls = parser.parse_args()
     for url in urls.user_urls:
         try:
