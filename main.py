@@ -4,7 +4,7 @@ import argparse
 import requests
 from urllib.parse import urlparse
 from dotenv import load_dotenv
-load_dotenv()
+
 
 
 def create_parser():
@@ -65,4 +65,5 @@ def main():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     main()
