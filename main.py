@@ -57,6 +57,7 @@ def is_bitlink(url, bitly_token):
 
 
 def main():
+    load_dotenv()
     bitly_token = os.environ['BITLY_TOKEN']
     parser = create_parser()
     # Gets the links entered by the user as a list
@@ -74,5 +75,4 @@ def main():
 
 
 if __name__ == '__main__':
-    load_dotenv()
     main()
