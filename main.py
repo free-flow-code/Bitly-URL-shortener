@@ -1,10 +1,8 @@
 import os
-import sys
 import argparse
 import requests
 from urllib.parse import urlparse
 from dotenv import load_dotenv
-
 
 
 def create_parser():
@@ -35,7 +33,7 @@ def create_biturl(url):
 def count_clicks(url, bitly_token):
     """Makes a get-request to the site and returns the number of clicks on the short link."""
     bit_url = create_biturl(url)
-    site =f'https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/clicks/summary'
+    site = f'https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/clicks/summary'
     header = {'Authorization': f'Bearer {bitly_token}'}
     params = {'unit': 'day', 'units': '-1'}
     response = requests.get(site, headers=header, params=params)
@@ -60,7 +58,6 @@ def main():
     load_dotenv()
     bitly_token = os.environ['BITLY_TOKEN']
     parser = create_parser()
-    # Gets the links entered by the user as a list
     urls = parser.parse_args()
     for url in urls.user_urls:
         try:
